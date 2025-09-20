@@ -28,6 +28,16 @@
     .downvote {background:#dc2626;}
     .vote-count {font-weight:bold;min-width:40px;text-align:center;font-size:16px;}
   </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0P5M4LR3NB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0P5M4LR3NB');
+  </script>
 </head>
 <body>
   <div class="container">
@@ -67,7 +77,7 @@
         <div style="flex: 1 1 280px; min-width: 260px;">
           <h2 style="margin-top:0; color:#ffffff;">Raffle</h2>
           <p style="color:#ffffff; font-size:15px; line-height:1.5;">
-            Send me up to <strong>3 Xanax</strong> 
+            Send me up to <strong>2 Xanax</strong> 
             <a href="https://www.torn.com/profiles.php?XID=3859772" target="_blank" style="color:#0b84ff; text-decoration:none;">
               here
             </a> 
@@ -96,7 +106,7 @@
         <span id="voteCount" class="vote-count">0</span>
         <button class="vote-btn downvote" onclick="vote(-1)">▼ Downvote</button>
       </div>
-      <p style="font-size:13px;color:#aaa;">* Thank you fellow torn player ( ˶˘ ³˘)♡.</p>
+      <p style="font-size:13px;color:#aaa;">* You can only vote once per browser (saved in localStorage).</p>
     </section>
 
   </div>
