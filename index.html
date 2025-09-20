@@ -1,0 +1,57 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fucikos Bazaar — Welcome</title>
+  <style>
+    :root{--accent:#0b84ff;--bg:#0f1720;--card:#ffffff;color:#ffffff}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{background:linear-gradient(180deg,#071126 0%, #081420 60%);color:#ffffff}
+    .container{max-width:980px;margin:28px auto;padding:22px}
+    header{display:flex;align-items:center;gap:18px}
+    h1{margin:0;font-size:26px;color:#ffffff}
+    p.lead{margin:6px 0 18px;color:#ffffff}
+    .card{background:rgba(255,255,255,0.04);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 6px 18px rgba(2,6,23,0.6);color:#ffffff}
+    .links{display:flex;gap:12px;flex-wrap:wrap}
+    .link{flex:1 1 280px;padding:14px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));text-decoration:none;color:#ffffff}
+    .link h3{margin:0 0 6px;font-size:16px;color:#ffffff}
+    .small{font-size:13px;color:#ffffff}
+    .right{margin-left:auto}
+    footer{margin-top:20px;color:#ffffff;font-size:13px}
+    .avatar{max-width:160px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.6)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="fucikos.jpg" alt="Fucikos logo" class="avatar">
+      <div>
+        <h1>Fucikos Bazaar — Customer Portal</h1>
+        <p class="lead">Landing page for customers with quick links to Bazaar, Trade, and TornExchange.</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2 style="margin-top:0;color:#ffffff">Quick Links</h2>
+      <div class="links">
+        <a class="link" href="https://www.torn.com/bazaar.php?userId=3859772#" target="_blank" rel="noopener">
+          <h3>Bazaar</h3>
+          <div class="small">Open the Torn Bazaar where customers can view your offers.</div>
+        </a>
+
+        <a class="link" href="https://www.torn.com/trade.php#step=start&userID=3859772" target="_blank" rel="noopener">
+          <h3>Trade</h3>
+          <div class="small">Begin trade requests directly with your user ID.</div>
+        </a>
+
+        <a class="link" href="https://www.tornexchange.com/prices/Fucikos/" target="_blank" rel="noopener">
+          <h3>TornExchange</h3>
+          <div class="small">View item prices on TornExchange for your profile (opens TornExchange).</div>
+        </a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
