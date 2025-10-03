@@ -5,32 +5,139 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Fucikos Bazaar — Welcome</title>
   
-  <!-- Plausible Analytics -->
   <script defer data-domain="fucikosbazaar.netlify.app" src="https://plausible.io/js/script.js"></script>
 
   <style>
-    :root{--accent:#0b84ff;--bg:#0f1720;--card:#ffffff;color:#ffffff}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
-    body{background:linear-gradient(180deg,#071126 0%, #081420 60%);color:#ffffff}
-    .container{max-width:980px;margin:28px auto;padding:22px}
-    header{display:flex;align-items:center;gap:18px}
-    h1{margin:0;font-size:26px;color:#ffffff}
-    p.lead{margin:6px 0 18px;color:#ffffff}
-    .card{background:rgba(255,255,255,0.04);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 6px 18px rgba(2,6,23,0.6);color:#ffffff}
-    .links{display:flex;gap:12px;flex-wrap:wrap}
-    .link{flex:1 1 280px;padding:14px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));text-decoration:none;color:#ffffff}
-    .link h3{margin:0 0 6px;font-size:16px;color:#ffffff}
-    .small{font-size:13px;color:#ffffff}
-    .right{margin-left:auto}
-    footer{margin-top:20px;color:#ffffff;font-size:13px}
-    .avatar{max-width:160px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.6)}
+    /* New: Purple Accent and White/Light Background */
+    :root {
+      --accent: #9333ea; /* A shade of purple */
+      --bg: #ffffff; /* White background */
+      --card: #f9f9f9; /* Off-white for cards */
+      --text: #1f2937; /* Dark gray for text */
+      --line: #e5e7eb; /* Light gray for subtle borders */
+    }
 
-    /* Global Upvote/Downvote styles */
-    .vote-box {display:flex;justify-content:center;align-items:center;gap:10px;margin:20px 0;}
-    .vote-btn {cursor:pointer;padding:8px 14px;border-radius:6px;border:none;color:#fff;font-size:15px;}
-    .upvote {background:#16a34a;}
-    .downvote {background:#dc2626;}
-    .vote-count {font-weight:bold;min-width:40px;text-align:center;font-size:16px;}
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Inter, system-ui, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 28px auto;
+      padding: 22px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      border-bottom: 2px solid var(--accent); /* Purple line accent */
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      color: var(--accent); /* Purple for the main title */
+    }
+
+    h2 {
+      color: var(--accent); /* Purple for section titles */
+      margin-top: 0;
+      border-left: 4px solid var(--accent); /* Purple vertical line accent */
+      padding-left: 10px;
+    }
+
+    p.lead {
+      margin: 6px 0 0;
+      color: var(--text);
+      font-size: 1.1em;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Lighter shadow for light theme */
+      border: 1px solid var(--line); /* Subtle border */
+      color: var(--text);
+    }
+
+    .links {
+      display: flex;
+      gap: 16px; /* Increased gap for better spacing */
+      flex-wrap: wrap;
+    }
+
+    .link {
+      flex: 1 1 200px; /* Adjusted flex-basis for cleaner layout */
+      padding: 18px;
+      border-radius: 10px;
+      background: #f0f3ff; /* Very light blue/purple background for links */
+      border: 1px solid var(--accent); /* Purple border on links */
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s ease;
+    }
+    
+    .link:hover {
+      background: var(--accent);
+      color: var(--card); /* White text on hover */
+      box-shadow: 0 4px 10px rgba(147, 51, 234, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .link h3 {
+      margin: 0 0 4px;
+      font-size: 18px;
+      color: var(--accent);
+      transition: color 0.2s ease;
+    }
+    
+    .link:hover h3 {
+      color: var(--card); /* White heading on hover */
+    }
+
+    .small {
+      font-size: 14px;
+      color: var(--text);
+      opacity: 0.8;
+      transition: color 0.2s ease;
+    }
+    
+    .link:hover .small {
+      color: var(--card); /* White description on hover */
+      opacity: 1;
+    }
+
+    .right {
+      margin-left: auto;
+    }
+
+    footer {
+      margin-top: 30px;
+      color: #6b7280; /* Neutral gray for footer */
+      font-size: 13px;
+      text-align: center;
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+    }
+
+    .avatar {
+      max-width: 120px; /* Slightly smaller avatar */
+      border-radius: 50%; /* Make it round */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: 3px solid var(--accent); /* Purple border around avatar */
+    }
   </style>
 </head>
 <body>
@@ -44,7 +151,7 @@
     </header>
 
     <section class="card">
-      <h2 style="margin-top:0;color:#ffffff">Quick Links</h2>
+      <h2>Quick Links</h2>
       <div class="links">
         <a class="link" href="https://www.torn.com/bazaar.php?userId=3859772#" target="_blank" rel="noopener">
           <h3>Bazaar</h3>
@@ -61,7 +168,6 @@
           <div class="small">Opens TornExchange and shows price of losses and buying items.</div>
         </a>
 
-        <!-- My Profile link -->
         <a class="link" href="https://www.torn.com/profiles.php?XID=3859772" target="_blank" rel="noopener">
           <h3>My Profile</h3>
           <div class="small">Opens my Torn profile page.</div>
@@ -69,65 +175,9 @@
       </div>
     </section>
 
-    <!-- Raffle Section -->
-    <section class="card">
-      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
-        
-        <!-- Text -->
-        <div style="flex: 1 1 280px; min-width: 260px;">
-          <h2 style="margin-top:0; color:#ffffff;">Raffle</h2>
-          <p style="color:#ffffff; font-size:15px; line-height:1.5;">
-            Send up to <strong>3 Xanax</strong> 
-            <a href="https://www.torn.com/profiles.php?XID=3859772" target="_blank" style="color:#0b84ff; text-decoration:none;">
-              here
-            </a> 
-            for a chance to win up to <strong>2 Donator Packs</strong> and other small prizes (including but not limited to drugs, energy drinks & weapons).
-          </p>
-        </div>
-
-        <!-- Spreadsheet -->
-        <div style="flex: 2 1 480px; min-width: 320px;">
-          <iframe 
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTDV23j0NkfsWQ_nULulkByHiksRHRd_9TrYGLhgmyGmRc8-5HEGr9JQTebKOx9QTQP_T7LWQG7yYv-/pubhtml?output=html&widget=true&headers=true"
-            width="100%" 
-            height="500" 
-            style="border: none; overflow: auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.6);">
-          </iframe>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Global Upvote/Downvote -->
-    <section class="card">
-      <h2 style="margin-top:0;color:#ffffff">Rate this Website</h2>
-      <div class="vote-box">
-        <button class="vote-btn upvote" onclick="vote(1)">▲ Upvote</button>
-        <span id="voteCount" class="vote-count">0</span>
-        <button class="vote-btn downvote" onclick="vote(-1)">▼ Downvote</button>
-      </div>
-      <p style="font-size:13px;color:#aaa;">* Thank you fellow torn player ( ˶˘ ³˘)♡</p>
-    </section>
-
+    <footer>
+      © 2025 Fucikos Bazaar. All rights reserved. | Built for Torn City.
+    </footer>
   </div>
-
-  <script>
-    let count = 0;
-    const savedVote = localStorage.getItem('hasVoted');
-    if (savedVote) {
-      document.querySelectorAll('.vote-btn').forEach(btn => btn.disabled = true);
-      count = parseInt(localStorage.getItem('voteCount')) || 0;
-      document.getElementById('voteCount').textContent = count;
-    }
-
-    function vote(value) {
-      if (localStorage.getItem('hasVoted')) return;
-      count = (parseInt(localStorage.getItem('voteCount')) || 0) + value;
-      document.getElementById('voteCount').textContent = count;
-      localStorage.setItem('voteCount', count);
-      localStorage.setItem('hasVoted', 'true');
-      document.querySelectorAll('.vote-btn').forEach(btn => btn.disabled = true);
-    }
-  </script>
 </body>
 </html>
