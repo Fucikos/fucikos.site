@@ -33,7 +33,7 @@
     html, body {
       height: 100%;
       margin: 0;
-      font-family: Inter, system-ui, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+      font-family: 'Inter', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial';
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
@@ -107,8 +107,20 @@
       background: var(--link-bg);
       border: 1px solid var(--accent);
       text-decoration: none;
-      color: var(--text);
+      color: var(--text);     
       transition: all 0.2s ease;
+    }
+
+    #xanax {
+      color: white;
+      text-shadow: 3px 3px 5px red, -3px -3px 5px cyan;
+    }
+
+    #xanaxsm {
+      color: #fff;
+      text-shadow: 3px 3px 5px red, -3px -3px 5px cyan;
+      font-weight: 600;
+      outline: black;
     }
     
     .link:hover {
@@ -222,7 +234,14 @@
           <h3>Trading Post</h3>
           <div class="small">Visit my Trading Post thread on the Torn forums.</div>
         </a>
+        
+        <a class="link" href="subpage.htm" target="_blank" rel="noopener">
+          <h3 id="xanax">Xanax 50/50 Game </h3>
+          <div class="small" id="xanaxsm">Opens my Xanax 50/50 game subpage.</div>
+        </a>
       </div>
+    
+
     </section>
 
     <footer>
