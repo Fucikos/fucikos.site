@@ -6,113 +6,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fucikos RNG Draw</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --primary-color: #7d3ac9; /* Deep Purple */
-    --secondary-color: #a45eda; /* Lavender/Light Purple */
-    --text-color: #333333; /* Dark Grey Text */
-    --background-color: #f7f7f7; /* Very Light Grey Background */
-    --card-background: #ffffff; /* Pure White Card */
-    --timer-color: #e73c7c; /* Pinkish-Red for timer contrast */
-    --shadow-light: rgba(125, 58, 201, 0.15); /* Purple shadow */
-    --shadow-dark: rgba(0, 0, 0, 0.1);
-  }
-
-  body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-
-  header {
-    margin-bottom: 30px;
-    text-align: center;
-    padding: 20px;
-  }
-
-  h1 {
-    margin: 0;
-    font-size: 2.5em;
-    font-weight: 700;
-    color: var(--primary-color);
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px var(--shadow-light);
-  }
-
-  .container {
-    background-color: var(--card-background);
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 800px;
-    box-shadow: 0 10px 20px var(--shadow-dark);
-    transition: all 0.3s ease;
-    border-top: 5px solid var(--secondary-color);
-  }
-
-  .container:hover {
-    box-shadow: 0 15px 30px var(--shadow-dark);
-    transform: translateY(-2px);
-  }
-
-  #info {
-    font-size: 1.1em;
-    margin-bottom: 15px;
-    font-weight: 400;
-    color: var(--text-color);
-    text-align: center;
-  }
-
-  #countdown {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 3.5em;
-    font-weight: 700;
-    color: var(--timer-color); /* A vibrant pink/red to contrast with the purple */
-    text-align: center;
-    padding: 10px 0;
-    border: 2px dashed var(--primary-color);
-    border-radius: 8px;
-    background-color: #f0e6ff; /* Very light purple background for the timer box */
-    box-shadow: inset 0 0 8px rgba(125, 58, 201, 0.3);
-  }
-
-  iframe {
-    width: 100%;
-    height: 600px;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px var(--shadow-dark);
-  }
-
-  @media (max-width: 600px) {
-    h1 {
-      font-size: 2em;
-    }
-    #countdown {
-      font-size: 2.5em;
-    }
-    .container {
-      padding: 15px;
-    }
-    iframe {
-      height: 400px;
-    }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
+
+<script>
+  // Wait for the HTML to be fully loaded
+  document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.getElementById('themeBtn');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        const html = document.documentElement;
+        const current = html.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    }
+
+    // Load saved theme on startup
+    const saved = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+  });
+</script>
+
 <body>
 
-<header>
-  <h1>Fucikos RNG Draw</h1>
-</header>
+<span>
+  <header>
+     <h1 id="header-txt">Fucikos RNG Draw</h1>
+  </header>
+</span>
+
+<button class="theme-toggle" id="themeBtn">🌙 Toggle Theme</button>
+
 
 <div class="container">
   <div id="info">Loading date and countdown info...</div>
@@ -126,7 +52,7 @@
 <script>
   function getNextWeekdayCountdown() {
     const now = new Date();
-    let target = new Date(now);
+    let target = new Date(now.getTime());
     target.setUTCHours(14, 0, 0, 0);
 
     const day = now.getUTCDay();
