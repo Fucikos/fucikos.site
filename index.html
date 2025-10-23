@@ -239,6 +239,11 @@
           <h3 id="xanax">Xanax 50/50 Game </h3>
           <div class="small" id="xanaxsm">Opens my Xanax 50/50 game subpage.</div>
         </a>
+
+        <a class="link" href="forum.html" target="_blank" rel="noopener">
+          <h3>Forum Posts</h3>
+          <div class="small">Quick gateway to all my forum posts.</div>
+        </a>
       </div>
     
 
@@ -253,28 +258,37 @@
     const themeToggle = document.getElementById('theme-toggle');
     const htmlEl = document.documentElement;
 
+    // Safely update the toggle icon if the element exists
+    const safeSetIcon = (icon) => {
+      if (themeToggle) {
+        themeToggle.textContent = icon;
+      }
+    };
+
     // Function to set the theme and update the icon
     const setTheme = (theme) => {
       if (theme === 'dark') {
         htmlEl.setAttribute('data-theme', 'dark');
-        themeToggle.textContent = '☀️'; // Sun icon when in dark mode
+        safeSetIcon('☀️'); // Sun icon when in dark mode
         localStorage.setItem('theme', 'dark');
       } else {
         htmlEl.removeAttribute('data-theme');
-        themeToggle.textContent = '🌙'; // Moon icon when in light mode
+        safeSetIcon('🌙'); // Moon icon when in light mode
         localStorage.setItem('theme', 'light');
       }
     };
 
-    // Add click event listener to the toggle button
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = localStorage.getItem('theme') || 'light';
-      if (currentTheme === 'light') {
-        setTheme('dark');
-      } else {
-        setTheme('light');
-      }
-    });
+    // Add click event listener to the toggle button (only if it exists)
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'light') {
+          setTheme('dark');
+        } else {
+          setTheme('light');
+        }
+      });
+    }
 
     // Check for saved theme in localStorage or user's OS preference on page load
     const savedTheme = localStorage.getItem('theme');
