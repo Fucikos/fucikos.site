@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Torn Times</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .article {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 20px auto;
+        }
+
+        h1, h2 {
+            font-family: "Julius Sans One", sans-serif;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        /* Improved paragraph spacing & readability */
+        .article p {
+            margin: 0 0 1rem;        /* consistent paragraph spacing */
+            line-height: 1.6;        /* easier to read */
+            font-size: 16px;
+            color: #222;
+        }
+
+        a {
+            text-decoration: none;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: rgb(255, 255, 255);
+            border: 4px solid black;
+            background-color: black;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 6px 10px;
+            display: inline-block;
+        }
+
+        #a {
+            font-weight: bold;
+            color: black;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        #original {
+            font-size: 14px;
+            background-color: transparent !important;
+            color: #0000EE;
+            text-decoration: underline;
+            border: none !important;
+            padding: 0;
+            display: inline;
+            margin: 0;
+        }
+
+        /* make the top "Back" link look like a regular text link (optional) */
+        .top-link {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 0;
+            border: none;
+            background: none;
+            color: #007acc;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <a class="top-link" href="../news.html">Back to Torn Times</a>
+
+    <div class="article">
+        <h2>Halloweek Preparation</h2>
+        <p><em>October 24, 2025</em></p>
+
+        <p id="a">As Halloweek approaches, it’s time to get ready for the spooky celebrations in Torn City. Here are some tips to help you prepare:</p>
+
+        <p id="a">Getting a Basket:</p>
+        <p>First, you’ll need to purchase a basket from <strong>Sally’s Sweet Shop</strong> in the city for <strong>$35</strong>. The shop restocks 1,000 baskets every five minutes, so if it’s sold out, just wait a bit and refresh until more are available.</p>
+
+        <p id="a">Earning Treats:</p>
+        <p>Attacking any player can reward you with treats. The default chance to loot candy from your first basket is quite low, but this improves with basket upgrades. You can also boost your chances by wearing <strong>Spooky</strong> clothing and landing the finishing hit using a <strong>Spooky</strong> weapon—provided you’ve unlocked the <em>I See Dead People</em> and <em>Here’s Johnny!</em> basket perks.</p>
+
+        <p id="a">Leveling Up Your Basket:</p>
+        <p>Your basket levels up automatically after collecting enough treats. The upgrade happens the next time you earn a treat from an attack. Treats aren’t consumed in this process. Each level increases your candy drop chance by <strong>5%</strong>, up to a maximum of <strong>+45%</strong> at the <em>Nightmarish</em> level.</p>
+
+        <p id="a">Upgrading Your Basket:</p>
+        <p>Basket upgrades unlock additional perks, such as higher drop rates and better candy rewards. These upgrades <em>do</em> consume your collected treats. To upgrade, go to your <strong>Special Items</strong> inventory and click <strong>“Use Item”</strong> next to your basket.</p>
+
+        <p><a id="original" href="https://www.torn.com/forums.php#/p=threads&f=61&t=16192843&b=0&a=0" target="_blank" title="Original Guide">View the Original Guide</a></p>
+    </div>
+
+    <script>
+        // Ensure paragraphs end with punctuation (.,!?:; or ,). Appends a period if missing.
+        document.addEventListener('DOMContentLoaded', function () {
+            var paragraphs = document.querySelectorAll('.article p');
+            var allowed = ".,!?:;";
+            paragraphs.forEach(function (p) {
+                var txt = p.textContent.trim();
+                if (!txt) return;
+                var last = txt.slice(-1);
+                if (allowed.indexOf(last) === -1 && last !== ",") {
+                    // append a period to the HTML so existing inline tags are preserved
+                    p.innerHTML = p.innerHTML + ".";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
