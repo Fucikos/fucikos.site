@@ -220,15 +220,6 @@
     }, { once: true });
   }
 
-  prevBtn.addEventListener('click', () => {
-    currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-    loadTrack(currentTrack);
-  });
-
-  nextBtn.addEventListener('click', () => {
-    currentTrack = (currentTrack + 1) % playlist.length;
-    loadTrack(currentTrack);
-  });
 
   audio.addEventListener('ended', () => {
     currentTrack = (currentTrack + 1) % playlist.length;
@@ -244,83 +235,41 @@
   function enableControlsAndPlay(direction) {
     prevBtn.disabled = false;
     nextBtn.disabled = false;
+  let playerStarted = false;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    songName.textContent = "Click Next or Prev to start playback";
+  });
+
+  function startPlayer(direction) {
+    if (playerStarted) return;
+    playerStarted = true;
+
     if (direction === 'next') {
-      currentTrack = (currentTrack + 1) % playlist.length;
+      currentTrack = 0;
     } else if (direction === 'prev') {
-      currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+      currentTrack = playlist.length - 1;
     }
-
-    // Lock GIF movement to the visible screen
-    (function ensureGifsLocked() {
-      if (window.__gifsLockedLoop) return;
-
-      const size = (typeof gifSize === 'number') ? gifSize : 200;
-      const gifsEls = document.querySelectorAll('.tenor-gif-embed');
-
-      // Avoid double offset (left/top + translate)
-      gifsEls.forEach(g => { g.style.left = '0px'; g.style.top = '0px'; });
-
-      function clampLoop() {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-
-        if (Array.isArray(window.chaos)) {
-          window.chaos.forEach(o => {
-            if (o.x < 0) { o.x = 0; o.vx = Math.abs(o.vx) || 1; }
-            if (o.y < 0) { o.y = 0; o.vy = Math.abs(o.vy) || 1; }
-            if (o.x + size > w) { o.x = w - size; o.vx = -Math.abs(o.vx) || -1; }
-            if (o.y + size > h) { o.y = h - size; o.vy = -Math.abs(o.vy) || -1; }
-
-            // Re-apply transform after clamping so it never renders offscreen
-            o.gif.style.transform = `translate(${o.x}px, ${o.y}px) rotate(${o.x % 360}deg) scale(${1 + Math.sin(o.y/50)/10})`;
-          });
-        }
-
-        requestAnimationFrame(clampLoop);
-      }
-
-      window.__gifsLockedLoop = true;
-      requestAnimationFrame(clampLoop);
-
-      // Snap back on resize
-      window.addEventListener('resize', () => {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        if (Array.isArray(window.chaos)) {
-          window.chaos.forEach(o => {
-            o.x = Math.max(0, Math.min(w - size, o.x));
-            o.y = Math.max(0, Math.min(h - size, o.y));
-          });
-        }
-      }, { passive: true });
-    })();
     loadTrack(currentTrack);
   }
 
-  prevBtn.addEventListener('click', function firstPrev(e) {
-    if (prevBtn.disabled) {
-      enableControlsAndPlay('prev');
-      prevBtn.removeEventListener('click', firstPrev);
-      nextBtn.removeEventListener('click', firstNext);
+  prevBtn.addEventListener('click', () => {
+    if (!playerStarted) {
+      startPlayer('prev');
+    } else {
+      currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+      loadTrack(currentTrack);
     }
   });
 
-  nextBtn.addEventListener('click', function firstNext(e) {
-    if (nextBtn.disabled) {
-      enableControlsAndPlay('next');
-      prevBtn.removeEventListener('click', firstPrev);
-      nextBtn.removeEventListener('click', firstNext);
+  nextBtn.addEventListener('click', () => {
+    if (!playerStarted) {
+      startPlayer('next');
+    } else {
+      currentTrack = (currentTrack + 1) % playlist.length;
+      loadTrack(currentTrack);
     }
   });
-
-  // --- CHAOTIC TENOR MOVEMENT ---
-  const gifs = document.querySelectorAll('.tenor-gif-embed');
-  const screenW = window.innerWidth;
-  const screenH = window.innerHeight;
-  const gifSize = 200;
-
-  // assign random velocity & start position
-  const chaos = Array.from(gifs).map((gif, i) => {
     const x = Math.random() * (screenW - gifSize);
     const y = Math.random() * (screenH - gifSize);
     gif.style.left = x + 'px';
@@ -331,7 +280,7 @@
     const vy = (Math.random() * 4 - 2) || -1;
 
     return { gif, x, y, vx, vy };
-  });
+  };
 
   function moveChaotically() {
     const w = window.innerWidth;
