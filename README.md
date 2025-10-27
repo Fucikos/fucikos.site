@@ -1,4 +1,2 @@
-# nevim kamo pomoc
-chatgpt kod chill chill
-jak nic
-pomoc
+# Fucikos.site
+HTML+CSS and sprinkle of JS
