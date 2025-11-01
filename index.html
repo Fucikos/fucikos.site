@@ -6,8 +6,6 @@
   <title>Fucikos Site — Welcome</title>
   <link rel="icon" type="image/png" href="images/icon.png">
   
-  <script defer data-domain="fucikos.site" src="https://plausible.io/js/script.js"></script>
-
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9783747830883843"
      crossorigin="anonymous"></script>
 
@@ -283,7 +281,6 @@
         <div>
           <h1>Fucikos Site — Homepage</h1>
           <p class="lead">Happy Halloween 🎃!</p>
-          <div id="status" style="font-size: 0.9em; color: var(--accent); margin-top: 8px;">Loading status...</div>
         </div>
       </div>
       <button id="theme-toggle" title="Toggle theme">🌙</button>
@@ -338,33 +335,6 @@
   </div>
 
   <script>
-    const REFRESH_INTERVAL = 30000; // 30 seconds
-
-    async function fetchLastAction() {
-      // Now calls YOUR server instead of Torn API directly
-      const statusEl = document.getElementById("status");
-
-      try {
-        const res = await fetch('/api/status');
-        if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
-        const data = await res.json();
-
-        if (data.error) {
-          statusEl.textContent = `Error: ${data.error}`;
-          return;
-        }
-
-        statusEl.textContent = `Status: ${data.status}`;
-        
-      } catch (err) {
-        statusEl.textContent = `Status: Offline`;
-      }
-    }
-
-    // Start API status checking
-    fetchLastAction();
-    setInterval(fetchLastAction, REFRESH_INTERVAL);
-
     const themeToggle = document.getElementById('theme-toggle');
     const htmlEl = document.documentElement;
 
