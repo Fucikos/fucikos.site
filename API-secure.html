@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Torn Last Action Status (Secure)</title>
+</head>
+<body>
+  <h2>Torn Last Action Status</h2>
+  <div id="status" style="font-size: 1.5em; font-weight: bold;">Loading...</div>
+  <div id="timestamp" style="color: #666; margin-top: 10px;"></div>
+
+  <script>
+    const REFRESH_INTERVAL = 30000; // 30 seconds
+
+    async function fetchLastAction() {
+      // Now calls YOUR server instead of Torn API directly
+      const statusEl = document.getElementById("status");
+      const timestampEl = document.getElementById("timestamp");
+
+      try {
+        const res = await fetch('/api/status');
+        if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
+        const data = await res.json();
+
+        if (data.error) {
+          statusEl.textContent = `Error: ${data.error}`;
+          return;
+        }
+
+        statusEl.textContent = `Status: ${data.status}`;
+        timestampEl.textContent = `Last updated: ${new Date(data.timestamp).toLocaleTimeString()}`;
+        
+      } catch (err) {
+        statusEl.textContent = `Error: ${err.message}`;
+        timestampEl.textContent = '';
+      }
+    }
+
+    fetchLastAction();
+    setInterval(fetchLastAction, REFRESH_INTERVAL);
+  </script>
+</body>
+</html>

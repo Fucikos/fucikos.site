@@ -4,7 +4,7 @@ const app = express();
 const PORT = 3000;
 
 // Your API key - kept secret on the server
-const API_KEY = "qPVea8k3mByNesKa";
+const API_KEY = process.env.TORN_API_KEY || "qPVea8k3mByNesKa";
 
 // Serve your static website files
 app.use(express.static(__dirname));
