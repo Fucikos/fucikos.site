@@ -52,12 +52,113 @@
       outline: none;
     }
 
+    /* Mobile-friendly responsive design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+        max-width: 100%;
+      }
+      
+      header {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      h1 {
+        font-size: 18px;
+      }
+      
+      .logo {
+        max-width: 60px;
+      }
+      
+      .links {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .link {
+        flex: 1 1 auto;
+        padding: 15px;
+        margin: 0;
+      }
+      
+      .link h3 {
+        font-size: 16px;
+      }
+      
+      .small {
+        font-size: 13px;
+      }
+      
+      .card {
+        padding: 15px;
+        margin-bottom: 15px;
+      }
+      
+      footer {
+        font-size: 10px;
+        padding-top: 8px;
+      }
+    }
+    
     /* Make it smaller on very small screens so it doesn't block content */
     @media (max-width: 480px) {
       .secret-link {
         right: -42px;
         padding: 6px 10px;
         font-size: 13px;
+      }
+      
+      .container {
+        padding: 8px;
+      }
+      
+      h1 {
+        font-size: 16px;
+      }
+      
+      .logo {
+        max-width: 50px;
+      }
+      
+      .link {
+        padding: 12px;
+      }
+      
+      .link h3 {
+        font-size: 15px;
+      }
+      
+      .small {
+        font-size: 12px;
+      }
+      
+      header::after {
+        font-size: 12px;
+        padding: 3px 10px;
+      }
+      
+      .rome-road {
+        bottom: 15px;
+        left: 10px;
+        transform: scale(0.8);
+      }
+      
+      .road-path {
+        width: 35px;
+        height: 3px;
+      }
+      
+      .road-sign {
+        font-size: 10px;
+        padding: 3px 6px;
       }
     }
     /* :unused{

@@ -307,21 +307,126 @@
       background: var(--autumn-red);
     }
 
+    /* Mobile-friendly responsive design */
     @media (max-width: 768px) {
       .container {
         padding: 10px;
+        max-width: 100%;
       }
 
       .card {
-        padding: 20px;
+        padding: 15px;
+        margin-bottom: 15px;
       }
 
       h2 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        padding-left: 10px;
+      }
+      
+      h2::before {
+        left: -20px;
+        font-size: 1em;
       }
 
       .link {
-        padding: 12px 15px;
+        padding: 15px;
+        margin-bottom: 8px;
+      }
+      
+      .link h3 {
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+      
+      .small {
+        font-size: 13px;
+      }
+
+      .back-link {
+        padding: 10px 14px;
+        font-size: 14px;
+        margin-bottom: 15px;
+      }
+      
+      .turkey-controls {
+        padding: 8px;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .control-button {
+        font-size: 12px;
+        padding: 6px 10px;
+        min-width: 80px;
+      }
+      
+      .speed-display {
+        font-size: 12px;
+        padding: 6px 8px;
+        min-width: 70px;
+      }
+
+      footer {
+        font-size: 10px;
+        padding-top: 8px;
+      }
+    }
+    
+    /* Extra small screens (phones) */
+    @media (max-width: 480px) {
+      .container {
+        padding: 8px;
+      }
+
+      .card {
+        padding: 12px;
+        margin-bottom: 12px;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+        padding-left: 8px;
+      }
+      
+      h2::before {
+        left: -18px;
+        font-size: 0.9em;
+      }
+
+      .link {
+        padding: 12px;
+      }
+      
+      .link h3 {
+        font-size: 15px;
+      }
+      
+      .small {
+        font-size: 12px;
+      }
+
+      .back-link {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+      
+      .turkey-controls {
+        padding: 6px;
+        gap: 6px;
+      }
+      
+      .control-button {
+        font-size: 11px;
+        padding: 5px 8px;
+        min-width: 70px;
+      }
+      
+      .speed-display {
+        font-size: 11px;
+        padding: 5px 6px;
+        min-width: 60px;
       }
     }
   </style>

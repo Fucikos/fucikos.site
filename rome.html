@@ -92,6 +92,79 @@
             font-style: italic;
             font-weight: 500;
         }
+        
+        /* Mobile-friendly responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+                margin-top: 30px;
+                padding: 0 15px;
+            }
+            
+            .philosophy {
+                max-width: 90%;
+                padding: 12px 15px;
+                bottom: 15px;
+                margin: 0 5%;
+                left: 0;
+                transform: none;
+            }
+            
+            p {
+                font-size: 0.9rem;
+                line-height: 1.3;
+                margin: 8px 0;
+            }
+            
+            .background-image::after {
+                box-shadow: inset 0 0 150px rgba(0,0,0,0.8);
+            }
+        }
+        
+        /* Extra small screens (phones) */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+                margin-top: 20px;
+                padding: 0 10px;
+            }
+            
+            .philosophy {
+                max-width: 95%;
+                padding: 10px 12px;
+                bottom: 10px;
+                margin: 0 2.5%;
+                border-radius: 6px;
+            }
+            
+            p {
+                font-size: 0.8rem;
+                line-height: 1.2;
+                margin: 6px 0;
+            }
+            
+            .background-image::after {
+                box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+            }
+        }
+        
+        /* Very small screens */
+        @media (max-width: 320px) {
+            h1 {
+                font-size: 1.3rem;
+                margin-top: 15px;
+            }
+            
+            .philosophy {
+                padding: 8px 10px;
+                bottom: 5px;
+            }
+            
+            p {
+                font-size: 0.75rem;
+                margin: 5px 0;
+            }
+        }
     </style>
 </head>
 <body id="romeBackground">
