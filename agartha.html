@@ -117,6 +117,30 @@
       0%,100%{opacity:1;transform:scale(1);}
       50%{opacity:0.6;transform:scale(1.05);}
     }
+
+    /* Back to home button */
+    .back-home {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(0, 200, 255, 0.9);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      z-index: 9999;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+    }
+
+    .back-home:hover {
+      background: rgb(0, 255, 255);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+    }
     
     /* Mobile-friendly responsive design */
     @media (max-width: 768px) {
@@ -160,6 +184,13 @@
       
       audio {
         height: 40px;
+      }
+      
+      .back-home {
+        top: 10px;
+        left: 10px;
+        padding: 8px 12px;
+        font-size: 12px;
       }
     }
     
@@ -247,6 +278,9 @@
     <div class="tenor-gif-embed" data-postid="18280425537641283765"></div>
     <div class="tenor-gif-embed" data-postid="452903340619560732"></div>
   </div>
+
+  <!-- Back to homepage button -->
+  <a href="index.html" class="back-home">🏠 Home</a>
 
   <div class="container">
     <div class="player">
