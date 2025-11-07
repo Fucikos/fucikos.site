@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Fucikos Site — Welcome</title>
+  <title>Fucikos Site — Autumn Harvest</title>
   <link rel="icon" type="image/png" href="images/icon.png">
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9783747830883843"
@@ -11,19 +11,22 @@
 
   <style>
     :root {
-      --accent: #ff6600;
-      --bg: #1a1a1a;
-      --card: #2d1f1f;
-      --text: #ffefc2;
-      --line: #374151;
-      --link-bg: #374151;
-      --footer-text: #6b7280;
+      --accent: #d2691e;
+      --bg: linear-gradient(135deg, #8b4513 0%, #a0522d 50%, #cd853f 100%);
+      --card: #f4e4bc;
+      --text: #2f1b14;
+      --line: #cd853f;
+      --link-bg: #faf0e6;
+      --footer-text: #8b4513;
+      --autumn-gold: #ffd700;
+      --autumn-orange: #ff8c00;
+      --autumn-red: #dc143c;
+      --warm-brown: #8b4513;
     }
 
-    /* Partially hidden but still visible link (add <a href="agartha.html" class="secret-link">Agartha</a> in the <body>) */
     .secret-link {
       position: fixed;
-      right: -56px;                 /* mostly off-screen */
+      right: -56px;                 
       top: 50%;
       transform: rotate(-90deg) translateY(-50%);
       transform-origin: center;
@@ -41,7 +44,6 @@
       backdrop-filter: blur(4px);
     }
 
-    /* Reveal more on hover/focus for discoverability and keyboard accessibility */
     .secret-link:hover,
     .secret-link:focus {
       right: 8px;
@@ -58,7 +60,7 @@
         font-size: 13px;
       }
     }
-    :unused{
+    /* :unused{
       --accent: #9333ea;
       --bg: #000000;
       --card: #f9f9f9;
@@ -67,51 +69,88 @@
       --link-bg: #f0f3ff;
       --footer-text: #ffffff;
 
-    }
+    } */
 
-    /* Dark Mode Variables */
+    /* Autumn Evening Mode Variables */
     [data-theme="dark"] {
-      --accent: #ff6600;
-      --bg: #1a1a1a;
-      --card: #2d1f1f;
-      --text: #ffefc2;
-      --line: #3a2a1a;
-      --link-bg: #2d1f1f;
-      --footer-text: #ff6600;
-      --bg: #111827;
-      --card: #1f2937;
-      --text: #f9fafb;
-      --line: #374151;
-      --link-bg: #374151;
-      --footer-text: #ffffff;
+      --accent: #ff8c00;
+      --bg: linear-gradient(135deg, #2f1b14 0%, #4a2c17 50%, #5d3a1a 100%);
+      --card: #3e2723;
+      --text: #ffd54f;
+      --line: #8d6e63;
+      --link-bg: #4e342e;
+      --footer-text: #ff8c00;
+      --autumn-gold: #ffc107;
+      --autumn-orange: #ff9800;
+      --autumn-red: #f44336;
+      --warm-brown: #6d4c41;
     }
 
     html, body {
-      height: 100%;
+      height: 100vh;
       margin: 0;
       font-family: 'Inter', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial';
       transition: background-color 0.3s ease, color 0.3s ease;
+      overflow: hidden;
     }
 
     body {
-      background-color: var(--bg);
+      background: var(--bg);
       color: var(--text);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 140, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(220, 20, 60, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
     }
 
     .container {
       max-width: 980px;
-      margin: 28px auto;
-      padding: 22px;
+      margin: 0 auto;
+      padding: 15px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
     }
 
     header {
       display: flex;
       align-items: center;
-      justify-content: space-between; /* Aligns items on opposite ends */
-      gap: 18px;
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 20px;
-      margin-bottom: 20px;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 12px;
+      margin-bottom: 15px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    header::after {
+      content: '🍂 🦃 🍁 🥧 🌽 🍂';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--card);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .header-content {
@@ -122,15 +161,31 @@
 
     h1 {
       margin: 0;
-      font-size: 28px;
+      font-size: 22px;
       color: var(--accent);
     }
 
     h2 {
       color: var(--accent);
       margin-top: 0;
-      border-left: 4px solid var(--accent);
-      padding-left: 10px;
+      padding-left: 15px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2::before {
+      content: '🍁';
+      position: absolute;
+      left: -22px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2em;
+      animation: gentle-sway 3s ease-in-out infinite;
+    }
+
+    @keyframes gentle-sway {
+      0%, 100% { transform: translateY(-50%) rotate(-5deg); }
+      50% { transform: translateY(-50%) rotate(5deg); }
     }
 
     p.lead {
@@ -141,21 +196,40 @@
 
     .card {
       background: var(--card);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 6px 20px rgba(139, 69, 19, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border: 2px solid var(--line);
       color: var(--text);
-      transition: background-color 0.3s ease, border-color 0.3s ease;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.05) 50%, transparent 70%);
+      transform: rotate(45deg);
+      transition: transform 0.6s ease;
+    }
+
+    .card:hover::before {
+      transform: rotate(45deg) translate(50px, 50px);
     }
 
     .links {
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
+      justify-content: space-between;
     }
-
+    
     .link {
       flex: 1 1 200px;
       padding: 18px;
@@ -165,26 +239,27 @@
       text-decoration: none;
       color: var(--text);     
       transition: all 0.2s ease;
+      min-width: 0;
     }
 
   
     
     .link:hover {
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--accent) 0%, var(--autumn-orange) 100%);
       color: var(--card);
-      box-shadow: 0 4px 10px rgba(255, 102, 0, 0.6), 0 0 20px rgba(255, 102, 0, 0.3);
-      transform: translateY(-2px);
-      animation: spooky-glow 1.5s ease-in-out infinite alternate;
-        }
+      box-shadow: 0 4px 15px rgba(210, 105, 30, 0.4), 0 0 25px rgba(255, 140, 0, 0.2);
+      transform: translateY(-3px) scale(1.02);
+      animation: autumn-warmth 2s ease-in-out infinite alternate;
+    }
 
-        @keyframes spooky-glow {
+    @keyframes autumn-warmth {
       from {
-      box-shadow: 0 4px 10px rgba(255, 102, 0, 0.6), 0 0 20px rgba(255, 102, 0, 0.3);
+        box-shadow: 0 4px 15px rgba(210, 105, 30, 0.4), 0 0 25px rgba(255, 140, 0, 0.2);
       }
       to {
-      box-shadow: 0 4px 15px rgba(255, 102, 0, 0.8), 0 0 30px rgba(255, 102, 0, 0.5);
+        box-shadow: 0 6px 20px rgba(210, 105, 30, 0.6), 0 0 35px rgba(255, 215, 0, 0.3);
       }
-        }
+    }
 
     .link h3 {
       margin: 0 0 4px;
@@ -218,42 +293,74 @@
     }
 
     footer {
-      margin-top: 30px;
       color: var(--footer-text);
-      font-size: 13px;
+      font-size: 11px;
       text-align: center;
-      padding-top: 15px;
-      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      border-top: 2px solid var(--line);
+      position: relative;
+      flex-shrink: 0;
+      margin-top: 10px;
     }
 
-    .avatar {
-      max-width: 120px;
-      border-radius: 50%;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      border: 3px solid var(--accent);
+    footer::before {
+      content: '🌾 Harvesting great deals since 2025 🌾';
+      display: block;
+      margin-bottom: 5px;
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
     }
 
-    /* Theme Toggle Button Styles */
-    #theme-toggle {
-        cursor: pointer;
-        background: transparent;
-        border: 1px solid var(--accent);
-        color: var(--text);
-        border-radius: 8px;
-        padding: 6px;
-        font-size: 20px; /* For emoji icon */
-        line-height: 1;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s ease;
+    .logo {
+      max-width: 80px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 
+        0 4px 15px rgba(139, 69, 19, 0.25),
+        0 2px 8px rgba(255, 140, 0, 0.15),
+        inset 0 1px 2px rgba(255, 255, 255, 0.1);
+      border: 2px solid var(--accent);
+      background: linear-gradient(135deg, var(--card) 0%, rgba(255, 215, 0, 0.1) 100%);
+      padding: 6px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    #theme-toggle {
-      display: flex;
+    .logo::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 70%);
+      transform: rotate(45deg) translate(-100px, -100px);
+      transition: transform 0.6s ease;
     }
+
+    .logo:hover {
+      transform: scale(1.08) rotate(2deg);
+      box-shadow: 
+        0 6px 20px rgba(139, 69, 19, 0.35),
+        0 4px 12px rgba(255, 140, 0, 0.25),
+        inset 0 1px 3px rgba(255, 255, 255, 0.15);
+      border-color: var(--autumn-gold);
+    }
+
+    .logo:hover::before {
+      transform: rotate(45deg) translate(50px, 50px);
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+
 
     /* Prevent the secret link from sliding in — only fade/shine on hover for discoverability */
     .secret-link {
@@ -270,20 +377,101 @@
       outline: none;
     }
 
+    /* Small secret road sign to Rome */
+    .rome-road {
+      position: fixed;
+      bottom: 25px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.6;
+      transition: opacity 0.3s ease, transform 0.2s ease;
+      z-index: 1000;
+      cursor: pointer;
+      text-decoration: none;
+      filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    }
+
+    .rome-road:hover {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+
+    .road-path {
+      width: 45px;
+      height: 4px;
+      background: #8b4513;
+      border-radius: 2px;
+      position: relative;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .road-path::before {
+      content: '';
+      position: absolute;
+      top: 1.5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 1px;
+      background: #ddd;
+      border-radius: 1px;
+    }
+
+    .road-sign {
+      background: #654321;
+      color: #f4e4bc;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+      border: 1px solid #8b4513;
+      position: relative;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .road-sign::before {
+      content: '←';
+      margin-right: 3px;
+      font-size: 11px;
+    }
+
+    .road-sign::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 10px;
+      background: #654321;
+      border-radius: 1px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+
   </style>
 </head>
 <body>
   <a href="agartha.html" class="secret-link">Agartha</a>
+  
+  <!-- Small secret road sign to Rome -->
+  <a href="rome.html" class="rome-road">
+    <div class="road-path"></div>
+    <div class="road-sign">Rome</div>
+  </a>
+  
   <div class="container">
     <header>
       <div class="header-content">
-        <img src="images/fucikos.png" alt="Fucikos logo" class="avatar">
+        <div class="logo">
+          <img src="images/fucikos (2).png" alt="Fucikos - Premium Trading Hub" />
+        </div>
         <div>
-          <h1>Fucikos Site — Homepage</h1>
-          <p class="lead">Happy Halloween!</p>
+          <h1>Fucikos Site — Welcome Home</h1>
+          <p class="lead">Happy Thanksgiving! 🦃🍂</p>
         </div>
       </div>
-      <button id="theme-toggle" title="Toggle theme">🌙</button>
     </header>
 
     <section class="card">
@@ -335,33 +523,44 @@
   </div>
 
   <script>
-    const themeToggle = document.getElementById('theme-toggle');
     const htmlEl = document.documentElement;
 
-    // Safely update the toggle icon if the element exists
-    const safeSetIcon = (icon) => {
-      if (themeToggle) {
-        themeToggle.textContent = icon;
-      }
-    };
-
-    // Add click event listener to the toggle button (only if it exists)
+    // Force dark mode (autumn evening theme) always
     htmlEl.setAttribute('data-theme', 'dark');
-    if (themeToggle) {
-      themeToggle.style.display = 'none';
+
+    // Add some floating autumn leaves animation
+    function createFloatingLeaf() {
+      const leaf = document.createElement('div');
+      leaf.innerHTML = ['🍁', '🍂', '🌿'][Math.floor(Math.random() * 3)];
+      leaf.style.position = 'fixed';
+      leaf.style.left = Math.random() * 100 + 'vw';
+      leaf.style.top = '-50px';
+      leaf.style.fontSize = (Math.random() * 20 + 15) + 'px';
+      leaf.style.opacity = Math.random() * 0.7 + 0.3;
+      leaf.style.pointerEvents = 'none';
+      leaf.style.zIndex = '-1';
+      leaf.style.animation = `fall ${Math.random() * 3 + 7}s linear infinite`;
+      
+      document.body.appendChild(leaf);
+      
+      setTimeout(() => {
+        document.body.removeChild(leaf);
+      }, 10000);
     }
 
-    
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // Add CSS for falling animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+    `;
+    document.head.appendChild(style);
 
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else if (prefersDark) {
-      setTheme('dark');
-    } else {
-      setTheme('light'); 
-    }
+    // Create leaves periodically
+    setInterval(createFloatingLeaf, 3000);
   </script>
 </body>
 </html>

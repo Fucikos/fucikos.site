@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rome!</title>
+    <link rel="icon" href="images/rome.jpeg" type="image/jpeg">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        body {
+            background-color: black;
+            font-family: Arial, sans-serif;
+        }
+        
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/rome.jpeg');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: black;
+            animation: twitch 0.1s infinite;
+            z-index: -1;
+        }
+        
+        .background-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at center, transparent 20%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0.9) 100%),
+                linear-gradient(45deg, rgba(20,0,0,0.4) 0%, transparent 30%, transparent 70%, rgba(0,0,20,0.4) 100%);
+            box-shadow: inset 0 0 200px rgba(0,0,0,0.8);
+            pointer-events: none;
+        }
+        
+        @keyframes twitch {
+            0% { background-position: center; }
+            10% { background-position: calc(50% + 1px) calc(50% + 1px); }
+            20% { background-position: calc(50% - 1px) center; }
+            30% { background-position: center calc(50% - 1px); }
+            40% { background-position: calc(50% + 1px) center; }
+            50% { background-position: center calc(50% + 1px); }
+            60% { background-position: calc(50% - 1px) calc(50% - 1px); }
+            70% { background-position: calc(50% + 1px) calc(50% - 1px); }
+            80% { background-position: calc(50% - 1px) calc(50% + 1px); }
+            90% { background-position: center center; }
+            100% { background-position: center; }
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            margin-top: 50px;
+            font-size: 3rem;
+            position: relative;
+            z-index: 10;
+        }
+        .philosophy {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
+            backdrop-filter: blur(3px);
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 10;
+        }
+        p {
+            color: #ffffff;
+            font-size: 1rem;
+            line-height: 1.4;
+            text-align: center;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+            font-style: italic;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body id="romeBackground">
+    <div class="background-image"></div>
+    
+    <audio id="backgroundMusic" loop autoplay style="display: none;">
+        <source src="music/Girlfriends - New Computers all roads lead to Rome.mp3" type="audio/mpeg">
+    </audio>
+    
+    <h1>All roads lead to Rome</h1>
+    
+    <div class="philosophy">
+        <p>"Death is not the opposite of life, but a part of it. You cannot change what is written in the stars."</p>
+        
+        <p>"All beginnings are endings in disguise."</p>
+        
+        <p>"The wise accept what cannot be altered. Fighting the inevitable is like standing against the tide - noble, perhaps, but ultimately futile."</p>
+        
+        <p>"The river flows, whether you watch or not."</p>
+
+        <p>"The wind knows no destination, yet it always arrives."</p>
+
+        <p>"The clock does not pity those who beg for time."</p>
+    </div>
+    
+    <script>
+        // Set up background music
+        const audio = document.getElementById('backgroundMusic');
+        
+        // Set volume to 30%
+        audio.volume = 0.3;
+        
+        let audioStarted = false;
+        
+        function startAudio() {
+            if (!audioStarted) {
+                audio.play().then(function() {
+                    console.log('Audio started successfully');
+                    audioStarted = true;
+                }).catch(function(error) {
+                    console.log('Audio play failed:', error);
+                });
+            }
+        }
+        
+        // Try multiple events to start audio
+        const events = ['click', 'touchstart', 'keydown', 'mouseover'];
+        
+        events.forEach(event => {
+            document.addEventListener(event, startAudio, { once: true });
+        });
+        
+        // Also try when page loads
+        window.addEventListener('load', function() {
+            startAudio();
+        });
+        
+        // Try immediately
+        startAudio();
+        
+        // Debug: Log audio element state
+        console.log('Audio element loaded:', audio);
+        console.log('Audio src:', audio.src);
+    </script>
+    
+</body>
+</html>

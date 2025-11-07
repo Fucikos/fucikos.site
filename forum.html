@@ -1,177 +1,540 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Fucikos Site — Forum Posts</title>
-    <link rel="icon" type="image/png" href="images/icon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fucikos Site — Forum Posts</title>
+  <link rel="icon" type="image/png" href="images/icon.png">
+  
+  <script defer data-domain="fucikos.site" src="https://plausible.io/js/script.js"></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9783747830883843"
+     crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --accent: #d2691e;
+      --bg: linear-gradient(135deg, #8b4513 0%, #a0522d 50%, #cd853f 100%);
+      --card: #f4e4bc;
+      --text: #2f1b14;
+      --line: #cd853f;
+      --link-bg: #faf0e6;
+      --footer-text: #8b4513;
+      --autumn-gold: #ffd700;
+      --autumn-orange: #ff8c00;
+      --autumn-red: #dc143c;
+      --warm-brown: #8b4513;
+    }
+
+    /* Autumn Evening Mode Variables */
+    [data-theme="dark"] {
+      --accent: #ff8c00;
+      --bg: linear-gradient(135deg, #2f1b14 0%, #4a2c17 50%, #5d3a1a 100%);
+      --card: #3e2723;
+      --text: #ffd54f;
+      --line: #8d6e63;
+      --link-bg: #4e342e;
+      --footer-text: #ff8c00;
+      --autumn-gold: #ffc107;
+      --autumn-orange: #ff9800;
+      --autumn-red: #f44336;
+      --warm-brown: #6d4c41;
+    }
+
+    html, body {
+      height: 100vh;
+      margin: 0;
+      font-family: 'Inter', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial';
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow: hidden;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 140, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(220, 20, 60, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 15px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: var(--card);
+      border: 2px solid var(--accent);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .back-link:hover {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--autumn-orange) 100%);
+      color: var(--card);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(210, 105, 30, 0.4);
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 6px 20px rgba(139, 69, 19, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border: 2px solid var(--line);
+      color: var(--text);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.05) 50%, transparent 70%);
+      transform: rotate(45deg);
+      transition: transform 0.6s ease;
+    }
+
+    .card:hover::before {
+      transform: rotate(45deg) translate(50px, 50px);
+    }
+
+    h2 {
+      color: var(--accent);
+      margin-top: 0;
+      padding-left: 15px;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    h2::before {
+      content: '📋';
+      position: absolute;
+      left: -26px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2em;
+      animation: gentle-sway 3s ease-in-out infinite;
+    }
+
+    @keyframes gentle-sway {
+      0%, 100% { transform: translateY(-50%) rotate(-5deg); }
+      50% { transform: translateY(-50%) rotate(5deg); }
+    }
+
+    .links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      flex-direction: column;
+    }
     
-    <script defer data-domain="fucikos.site" src="https://plausible.io/js/script.js"></script>
+    .link {
+      padding: 18px;
+      border-radius: 10px;
+      background: var(--link-bg);
+      border: 1px solid var(--accent);
+      text-decoration: none;
+      color: var(--text);     
+      transition: all 0.2s ease;
+      min-width: 0;
+      display: block;
+    }
+    
+    .link:hover {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--autumn-orange) 100%);
+      color: var(--card);
+      box-shadow: 0 4px 15px rgba(210, 105, 30, 0.4), 0 0 25px rgba(255, 140, 0, 0.2);
+      transform: translateY(-3px) scale(1.02);
+      animation: autumn-warmth 2s ease-in-out infinite alternate;
+    }
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9783747830883843"
-         crossorigin="anonymous"></script>
+    @keyframes autumn-warmth {
+      from {
+        box-shadow: 0 4px 15px rgba(210, 105, 30, 0.4), 0 0 25px rgba(255, 140, 0, 0.2);
+      }
+      to {
+        box-shadow: 0 6px 20px rgba(210, 105, 30, 0.6), 0 0 35px rgba(255, 215, 0, 0.3);
+      }
+    }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    .link h3 {
+      margin: 0 0 4px;
+      font-size: 18px;
+      color: var(--accent);
+      transition: color 0.2s ease;
+      font-weight: 600;
+    }
+    
+    .link:hover h3 {
+      color: var(--card);
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
-            line-height: 1.6;
-        }
+    .small {
+      font-size: 14px;
+      color: var(--text);
+      opacity: 0.8;
+      transition: color 0.2s ease;
+    }
+    
+    .link:hover .small {
+      color: var(--card);
+      opacity: 1;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    #coffee {
+      color: rgb(255, 255, 255);
+      text-decoration: underline;
+      font-weight: bold;
+    }
 
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s ease;
-        }
+    footer {
+      color: var(--footer-text);
+      font-size: 11px;
+      text-align: center;
+      padding-top: 10px;
+      border-top: 2px solid var(--line);
+      position: relative;
+      flex-shrink: 0;
+      margin-top: 10px;
+    }
 
-        .back-link:hover {
-            opacity: 0.8;
-        }
+    footer::before {
+      content: '🌾 Harvesting great deals since 2025 🌾';
+      display: block;
+      margin-bottom: 5px;
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+    }
 
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
+    /* Turkey Control Panel Styles */
+    .turkey-controls {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--card);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 150px;
+    }
 
-        .card h2 {
-            margin-bottom: 20px;
-            color: #333;
-            font-size: 1.8rem;
-            font-weight: 600;
-        }
+    .control-button {
+      background: var(--accent);
+      color: var(--card);
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
 
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+    .control-button:hover {
+      background: var(--autumn-orange);
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(210, 105, 30, 0.4);
+    }
 
-        .link {
-            display: block;
-            padding: 15px 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #333;
-            transition: all 0.3s ease;
-            border: 1px solid #e9ecef;
-        }
+    .control-button:active {
+      transform: translateY(0);
+    }
 
-        .link:hover {
-            background: #e9ecef;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
+    .speed-display {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text);
+      font-weight: 600;
+      margin: 5px 0;
+    }
 
-        .link h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #667eea;
-        }
+    .mute-button {
+      background: var(--warm-brown);
+    }
 
-        .link .small {
-            font-size: 0.9rem;
-            color: #666;
-        }
+    .mute-button.muted {
+      background: var(--autumn-red);
+    }
 
-        footer {
-            text-align: center;
-            color: white;
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
 
-        footer a {
-            color: white;
-            text-decoration: underline;
-        }
+      .card {
+        padding: 20px;
+      }
 
-        footer a:hover {
-            opacity: 0.8;
-        }
+      h2 {
+        font-size: 1.5rem;
+      }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-
-            .card {
-                padding: 20px;
-            }
-
-            .card h2 {
-                font-size: 1.5rem;
-            }
-
-            .link {
-                padding: 12px 15px;
-            }
-        }
-    </style>
+      .link {
+        padding: 12px 15px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to Homepage</a>
-
-        <section class="card">
-            <h2>Interesting Forum Posts</h2>
-            <div class="links">
-                <a class="link" href="#" target="_blank" rel="noopener">
-                    <h3>N/A</h3>
-                    <div class="small">N/A</div>
-                </a>
-
-                <a class="link" href="#" target="_blank" rel="noopener">
-                    <h3>N/A</h3>
-                    <div class="small">N/A</div>
-                </a>
-
-                <a class="link" href="#" target="_blank" rel="noopener">
-                    <h3>N/A</h3>
-                    <div class="small">N/A</div>
-                </a>
-
-                <a class="link" href="#" target="_blank" rel="noopener">
-                    <h3>N/A</h3>
-                    <div class="small">N/A</div>
-                </a>
-
-                <a class="link" href="#" target="_blank" rel="noopener">
-                    <h3>N/A</h3>
-                    <div class="small">N/A</div>
-                </a>
-
-                <a class="link" href="#" target="_blank" rel="noopener">
-                    <h3>N/A</h3>
-                    <div class="small">N/A</div>
-                </a>
-            </div>
-        </section>
-
-        <footer>
-            © 2025 Fucikos Bazaar. All rights reserved. | Built for Torn City.| <a href="https://buymeacoffee.com/fucikos" id="coffee" target="_blank" rel="noopener">Buy me a coffee.</a>
-        </footer>
+    <!-- Turkey Control Panel -->
+    <div class="turkey-controls">
+      <button class="control-button" id="speedUp">⚡ Speed Up</button>
+      <div class="speed-display" id="speedDisplay">Speed: 1x</div>
+      <button class="control-button" id="slowDown">🐌 Slow Down</button>
+      <button class="control-button mute-button" id="muteToggle">🔊 Mute</button>
     </div>
+
+    <div class="container">
+    <a href="index.html" class="back-link">← Back to Homepage</a>
+
+    <section class="card">
+      <h2>Interesting Forum Posts</h2>
+      <div class="links">
+        <a class="link" href="https://www.torn.com/forums.php#/p=threads&f=10&t=16510862&b=0&a=0&start=0&to=26557097" target="_blank" rel="noopener">
+          <h3>Trading Forum</h3>
+          <div class="small">View my great deals!</div>
+        </a>
+
+        <a class="link" href="#" target="_blank" rel="noopener">
+          <h3>N/A</h3>
+          <div class="small">N/A</div>
+        </a>
+
+        <a class="link" href="#" target="_blank" rel="noopener">
+          <h3>N/A</h3>
+          <div class="small">N/A</div>
+        </a>
+
+        <a class="link" href="#" target="_blank" rel="noopener">
+          <h3>N/A</h3>
+          <div class="small">N/A</div>
+        </a>
+
+        <a class="link" href="#" target="_blank" rel="noopener">
+          <h3>N/A</h3>
+          <div class="small">N/A</div>
+        </a>
+
+        <a class="link" href="#" target="_blank" rel="noopener">
+          <h3>N/A</h3>
+          <div class="small">N/A</div>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 Fucikos Bazaar. All rights reserved. | Built for Torn City.| <a href="https://buymeacoffee.com/fucikos" id="coffee" target="_blank" rel="noopener">Buy me a coffee.</a>
+    </footer>
+  </div>
+
+  <script>
+    const htmlEl = document.documentElement;
+
+    // Force dark mode (autumn evening theme) always
+    htmlEl.setAttribute('data-theme', 'dark');
+
+    // Add some floating autumn leaves animation
+    function createFloatingLeaf() {
+      const leaf = document.createElement('div');
+      leaf.innerHTML = ['🍁', '🍂', '🌿'][Math.floor(Math.random() * 3)];
+      leaf.style.position = 'fixed';
+      leaf.style.left = Math.random() * 100 + 'vw';
+      leaf.style.top = '-50px';
+      leaf.style.fontSize = (Math.random() * 20 + 15) + 'px';
+      leaf.style.opacity = Math.random() * 0.7 + 0.3;
+      leaf.style.pointerEvents = 'none';
+      leaf.style.zIndex = '-1';
+      leaf.style.animation = `fall ${Math.random() * 3 + 7}s linear infinite`;
+      
+      document.body.appendChild(leaf);
+      
+      setTimeout(() => {
+        document.body.removeChild(leaf);
+      }, 10000);
+    }
+
+    // Add CSS for falling animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Create leaves periodically
+    setInterval(createFloatingLeaf, 3000);
+
+    // Turkey Control Variables
+    let speedMultiplier = 1;
+    let isMuted = false;
+
+    // DVD Logo Turkey Animation
+    function createBouncingTurkey() {
+      const turkey = document.createElement('div');
+      turkey.innerHTML = '🦃';
+      turkey.style.position = 'fixed';
+      turkey.style.fontSize = '50px';
+      turkey.style.pointerEvents = 'none';
+      turkey.style.zIndex = '1000';
+      turkey.style.userSelect = 'none';
+      turkey.style.transition = 'filter 0.1s ease';
+      
+      // Initial position
+      let x = Math.random() * (window.innerWidth - 50);
+      let y = Math.random() * (window.innerHeight - 50);
+      
+      // Base velocity (will be multiplied by speedMultiplier)
+      const baseVx = 2 + Math.random() * 3; // Base speed between 2-5
+      const baseVy = 2 + Math.random() * 3;
+      let vx = baseVx * speedMultiplier;
+      let vy = baseVy * speedMultiplier;
+      
+      // Function to play gobble sound with overlapping
+      function playGobble() {
+        if (isMuted) return; // Don't play if muted
+        
+        try {
+          // Create a new audio instance each time for overlapping
+          const gobbleSound = new Audio('music/turkey-gobble-soundbible.mp3');
+          gobbleSound.volume = 0.5; // Set volume to 50%
+          gobbleSound.play().catch(e => console.log('Audio play failed:', e));
+        } catch (e) {
+          console.log('Audio error:', e);
+        }
+      }
+      
+      // Function to update turkey speed
+      function updateSpeed() {
+        vx = (vx > 0 ? 1 : -1) * Math.abs(baseVx) * speedMultiplier;
+        vy = (vy > 0 ? 1 : -1) * Math.abs(baseVy) * speedMultiplier;
+      }
+      
+      // Expose update function globally for controls
+      window.updateTurkeySpeed = updateSpeed;
+      
+      function animate() {
+        // Update position
+        x += vx;
+        y += vy;
+        
+        // Bounce off edges
+        if (x <= 0 || x >= window.innerWidth - 50) {
+          vx = -vx;
+          playGobble(); // Play gobble sound on horizontal bounce
+          // Add a little glow effect on bounce
+          turkey.style.textShadow = '0 0 20px rgba(255, 140, 0, 0.8)';
+          setTimeout(() => {
+            turkey.style.textShadow = 'none';
+          }, 200);
+        }
+        
+        if (y <= 0 || y >= window.innerHeight - 50) {
+          vy = -vy;
+          playGobble(); // Play gobble sound on vertical bounce
+          // Add a little glow effect on bounce
+          turkey.style.textShadow = '0 0 20px rgba(255, 140, 0, 0.8)';
+          setTimeout(() => {
+            turkey.style.textShadow = 'none';
+          }, 200);
+        }
+        
+        // Keep within bounds
+        x = Math.max(0, Math.min(window.innerWidth - 50, x));
+        y = Math.max(0, Math.min(window.innerHeight - 50, y));
+        
+        // Apply position
+        turkey.style.left = x + 'px';
+        turkey.style.top = y + 'px';
+        
+        requestAnimationFrame(animate);
+      }
+      
+      document.body.appendChild(turkey);
+      animate();
+      
+      return turkey;
+    }
+    
+    // Create the bouncing turkey
+    createBouncingTurkey();
+
+    // Control Button Event Listeners
+    const speedUpBtn = document.getElementById('speedUp');
+    const slowDownBtn = document.getElementById('slowDown');
+    const muteToggleBtn = document.getElementById('muteToggle');
+    const speedDisplay = document.getElementById('speedDisplay');
+
+    speedUpBtn.addEventListener('click', () => {
+      speedMultiplier = Math.min(speedMultiplier + 0.5, 20); // Max 20x speed
+      speedDisplay.textContent = `Speed: ${speedMultiplier}x`;
+      if (window.updateTurkeySpeed) window.updateTurkeySpeed();
+    });
+
+    slowDownBtn.addEventListener('click', () => {
+      speedMultiplier = Math.max(speedMultiplier - 0.5, 0.25); // Min 0.25x speed
+      speedDisplay.textContent = `Speed: ${speedMultiplier}x`;
+      if (window.updateTurkeySpeed) window.updateTurkeySpeed();
+    });
+
+    muteToggleBtn.addEventListener('click', () => {
+      isMuted = !isMuted;
+      muteToggleBtn.textContent = isMuted ? '🔇 Unmute' : '🔊 Mute';
+      muteToggleBtn.classList.toggle('muted', isMuted);
+    });
+  </script>
 </body>
 </html>
