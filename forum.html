@@ -554,7 +554,7 @@
         
         try {
           // Create a new audio instance each time for overlapping
-          const gobbleSound = new Audio('audio/turkey-gobble-soundbible.mp3');
+          const gobbleSound = new Audio('audios/turkey-gobble-soundbible.mp3');
           gobbleSound.volume = 0.5; // Set volume to 50%
           gobbleSound.play().catch(e => console.log('Audio play failed:', e));
         } catch (e) {
