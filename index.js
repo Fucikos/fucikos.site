@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initializeTheme();
   initializeFloatingLeaves();
   initializeLogoEffects();
+  initializeRandomFooterMessage();
 });
 
 function initializeTheme() {
@@ -298,4 +299,36 @@ function playDoakesVideo() {
       document.body.removeChild(overlay);
     }
   });
+}
+
+function initializeRandomFooterMessage() {
+  // Array of random messages with their rarity
+  const messages = [
+    { text: '🌾 Harvesting great deals since 2025 🌾', weight: 40 },
+    { text: '🍂 Autumn vibes bringing you the best finds 🍂', weight: 40 },
+    { text: '🦃 Gobbling up savings this season 🦃', weight: 19 },
+    { text: '✨ You found the secret message! Lucky you! ✨', weight: 1 } // 1 in 100 chance
+  ];
+  
+  // Create weighted array for selection
+  const weightedMessages = [];
+  messages.forEach(message => {
+    for (let i = 0; i < message.weight; i++) {
+      weightedMessages.push(message.text);
+    }
+  });
+  
+  // Select random message
+  const randomMessage = weightedMessages[Math.floor(Math.random() * weightedMessages.length)];
+  
+  // Create and insert the message element
+  const footer = document.querySelector('footer');
+  if (footer) {
+    const messageElement = document.createElement('div');
+    messageElement.className = 'footer-message';
+    messageElement.textContent = randomMessage;
+    
+    // Insert at the beginning of the footer
+    footer.insertBefore(messageElement, footer.firstChild);
+  }
 }
