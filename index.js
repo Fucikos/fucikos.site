@@ -10,14 +10,14 @@ function initializeTheme() {
   htmlEl.setAttribute('data-theme', 'dark');
 }
 
-// Bazaar countdown timer to 16:00 UTC
+// Bazaar countdown timer to 14:30 UTC
 function initializeBazaarCountdown() {
   function updateCountdown() {
     const now = new Date();
     
-    // Target time is 16:00 UTC
-    const targetHour = 16;
-    const targetMinute = 0;
+    // Target time is 14:30 UTC
+    const targetHour = 14;
+    const targetMinute = 30;
     
     // Calculate target time for today
     let targetTime = new Date();
@@ -49,4 +49,5 @@ function initializeBazaarCountdown() {
   // Update immediately and then every second
   updateCountdown();
   setInterval(updateCountdown, 1000);
+
 }
