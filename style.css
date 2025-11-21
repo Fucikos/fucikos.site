@@ -1,3 +1,5 @@
+/* Stylesheet for index.html */
+
 :root {
   --accent: #4da3ff;
   --bg: linear-gradient(180deg, #0b0c0d 0%, #111316 60%, #0b0c0d 100%);
@@ -158,6 +160,7 @@ h2 {
   font-size: 13px;
   color: var(--muted);
 }
+
 
 /* SECRET LINKS */
 .secret-link {
